@@ -159,6 +159,7 @@ body{font-family:"Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t
 </style>
 </head>
 <body>
+<script src="data/products.js"></script>
 
 <!-- Header -->
 <div class="header">
@@ -280,8 +281,14 @@ function hideSkeleton(){
 async function loadProducts() {
   showSkeleton();
   try {
-    const res = await fetch('data/products.json?t=' + Date.now());
-    allProducts = await res.json();
+    // Method 1: Use pre-loaded data from products.js (works in file:// local mode)
+    if (window.PRODUCT_DATA && window.PRODUCT_DATA.length > 0) {
+      allProducts = window.PRODUCT_DATA;
+    } else {
+      // Method 2: Fetch JSON (works in http/https online mode)
+      const res = await fetch('data/products.json?t=' + Date.now());
+      allProducts = await res.json();
+    }
     filteredProducts = [...allProducts];
     hideSkeleton();
     extractCategories();

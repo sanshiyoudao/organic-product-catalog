@@ -138,6 +138,7 @@ tr:hover td{background:rgba(34,197,94,.04)}
 </style>
 </head>
 <body>
+<script src="data/products.js"></script>
 
 <div class="header">
   <h1><span class="icon">⚙️</span> 产品库管理后台</h1>
@@ -211,18 +212,30 @@ const CAT_CLASS_MAP = {
   '坚果干果':'organic-nut','菌菇干货':'organic-mushroom'
 };
 
-// Load data from same directory
-fetch('./data/products.json?t='+Date.now())
-  .then(r => r.json())
-  .then(data => {
-    allProducts = data;
+// Load data - support both local (script tag) and online (fetch) modes
+function loadProducts() {
+  // Method 1: Use pre-loaded data from products.js (works in file:// local mode)
+  if (window.PRODUCT_DATA && window.PRODUCT_DATA.length > 0) {
+    allProducts = window.PRODUCT_DATA;
     renderTable();
     updateStats();
-    document.getElementById('productCount').textContent = data.length;
-  })
-  .catch(() => {
-    showToast('数据加载失败，请确保 admin.html 和 data/products.json 在同一目录', 'error');
-  });
+    document.getElementById('productCount').textContent = allProducts.length;
+    return;
+  }
+  // Method 2: Fetch JSON (works in http/https online mode)
+  fetch('./data/products.json?t='+Date.now())
+    .then(r => r.json())
+    .then(data => {
+      allProducts = data;
+      renderTable();
+      updateStats();
+      document.getElementById('productCount').textContent = data.length;
+    })
+    .catch(() => {
+      showToast('数据加载失败，请确保 admin.html 和 data/products.js 在同一目录', 'error');
+    });
+}
+loadProducts();
 
 // ========== Render ==========
 function getCatClass(cat) {
