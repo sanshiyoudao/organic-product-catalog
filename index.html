@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>生态有机产品库</title>
+<!-- 微信分享卡片优化 -->
+<meta property="og:title" content="生态有机产品库">
+<meta property="og:description" content="天然·健康·品质生活 — 精选生态有机产品一站式浏览">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f1a0f;
+  --card:#162416;
+  --card-hover:#1e331e;
+  --border:#2d4a2d;
+  --accent:#22c55e;
+  --accent-light:#4ade80;
+  --text:#e8f5e9;
+  --text-dim:#94be98;
+  --green:#10b981;
+  --orange:#f59e0b;
+  --red:#ef4444;
+}
+body{font-family:"Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* ===== Header ===== */
+.header{background:linear-gradient(135deg,#0f1a0f 0%,#1e3320 50%,#0f1a0f 100%);padding:20px 16px 14px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.header-inner{max-width:1200px;margin:0 auto}
+.logo{font-size:20px;font-weight:bold;color:#fff;display:flex;align-items:center;gap:8px}
+.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),#15803d);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.subtitle{font-size:12px;color:var(--text-dim);margin-top:4px}
+.stats{display:flex;gap:16px;margin-top:12px;font-size:13px;color:var(--text-dim)}
+.stat-num{color:var(--accent-light);font-weight:bold}
+
+/* Search */
+.search-wrap{margin-top:12px;position:relative}
+.search-input{width:100%;padding:10px 40px 10px 14px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-size:15px;outline:none;transition:border .2s}
+.search-input:focus{border-color:var(--accent)}
+.search-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--text-dim);font-size:16px}
+.search-clear{position:absolute;right:38px;top:50%;transform:translateY(-50%);color:var(--text-dim);cursor:pointer;font-size:16px;display:none}
+.search-clear.show{display:block}
+
+/* Toolbar (sort + count) */
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin-top:12px;flex-wrap:wrap;gap:8px}
+.result-count{font-size:12px;color:var(--text-dim)}
+.sort-wrap{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-dim)}
+.sort-btn{padding:5px 10px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;font-size:12px;display:flex;align-items:center;gap:3px;transition:all .2s}
+.sort-btn.active{background:rgba(34,197,94,.15);color:var(--accent-light);border-color:var(--accent)}
+
+/* Category tabs */
+.tabs{display:flex;gap:8px;margin-top:12px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:7px 16px;border-radius:20px;font-size:13px;white-space:nowrap;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-dim);transition:all .2s;flex-shrink:0}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab:not(.active):hover{border-color:var(--accent);color:var(--text)}
+
+/* Main */
+.main{max-width:1200px;margin:0 auto;padding:16px}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:14px}
+
+/* Card */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .25s;cursor:pointer;position:relative}
+.card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 30px rgba(34,197,94,.15)}
+.card-img-wrap{width:100%;height:180px;background:linear-gradient(135deg,#1e3320,#2d4a2d);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.card:hover .card-img-wrap img{transform:scale(1.05)}
+.card-img-placeholder{font-size:52px;opacity:.35}
+.card-badge{position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:bold;background:rgba(34,197,94,.85);color:#fff;backdrop-filter:blur(4px)}
+.card-body{padding:14px}
+.card-name{font-size:16px;font-weight:bold;color:#fff;margin-bottom:6px;line-height:1.3}
+.card-highlights{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tag{font-size:11px;color:var(--text-dim);background:var(--bg);padding:3px 8px;border-radius:6px}
+.card-footer{display:flex;justify-content:space-between;align-items:center}
+.card-price{font-size:18px;font-weight:bold;color:var(--green)}
+.card-btn{padding:6px 14px;border-radius:8px;font-size:12px;background:var(--accent);color:#fff;border:none;cursor:pointer;transition:opacity .2s}
+.card-btn:hover{opacity:.85}
+
+/* Pagination */
+.pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:24px;padding:16px 0;flex-wrap:wrap}
+.page-btn{min-width:36px;height:36px;border:1px solid var(--border);border-radius:9px;background:var(--card);color:var(--text-dim);font-size:14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.page-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.page-btn:hover:not(.active):not(:disabled){border-color:var(--accent);color:var(--text)}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);z-index:200;backdrop-filter:blur(6px)}
+.modal-overlay.show{display:flex;align-items:end;justify-content:center}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes scaleIn{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+.modal{background:var(--card);border-radius:20px 20px 0 0;width:100%;max-width:520px;max-height:85vh;overflow-y:auto;padding:24px 20px;animation:slideUp .3s ease-out;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.modal-title{font-size:20px;font-weight:bold;line-height:1.3}
+.modal-close{width:32px;height:32px;border-radius:50%;background:var(--bg);border:none;color:var(--text-dim);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.modal-close:hover{color:#fff;background:var(--border)}
+.modal-img{width:100%;height:220px;border-radius:14px;background:linear-gradient(135deg,#1e3320,#2d4a2d);display:flex;align-items:center;justify-content:center;font-size:64px;color:var(--text-dim);overflow:hidden;margin-bottom:16px}
+.modal-img img{width:100%;height:100%;object-fit:cover}
+.modal-price{font-size:24px;font-weight:bold;color:var(--green);margin-bottom:12px}
+.modal-section{margin-bottom:16px}
+.modal-label{font-size:13px;color:var(--text-dim);margin-bottom:8px;font-weight:bold}
+.modal-highlights{display:flex;flex-wrap:wrap;gap:8px}
+.modal-tag{font-size:13px;color:var(--text);background:var(--bg);padding:6px 12px;border-radius:8px;border:1px solid var(--border)}
+.action-btns{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.action-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;text-decoration:none;cursor:pointer;border:none;transition:opacity .2s}
+.action-btn:hover{opacity:.9}
+.btn-shop{background:linear-gradient(135deg,var(--accent),#15803d);color:#fff}
+.btn-video{background:linear-gradient(135deg,var(--orange),#d97706);color:#fff}
+.btn-copy{background:linear-gradient(135deg,#6b7280,#374151);color:#fff}
+.copy-toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,.95);color:#111;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:bold;z-index:300;animation:scaleIn .25s ease-out;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+
+/* Empty state */
+.empty{text-align:center;padding:60px 20px;color:var(--text-dim)}
+.empty-icon{font-size:56px;margin-bottom:12px}
+.empty-text{font-size:15px}
+.empty-hint{font-size:13px;margin-top:8px;color:var(--text-dim);opacity:.7}
+
+/* Footer */
+.footer{text-align:center;padding:28px 20px;color:var(--text-dim);font-size:12px;border-top:1px solid var(--border);margin-top:30px}
+
+/* Back to top */
+.back-to-top{position:fixed;right:16px;bottom:80px;width:42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:18px;cursor:pointer;z-index:90;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(34,197,94,.3);transition:all .2s;opacity:0;pointer-events:none}
+.back-to-top.show{opacity:1;pointer-events:auto}
+.back-to-top:hover{transform:scale(1.1)}
+
+/* Skeleton loading */
+.skeleton-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:14px}
+.skeleton-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.skeleton-img{width:100%;height:180px;background:linear-gradient(90deg,var(--card) 25%,var(--card-hover) 50%,var(--card) 75%);background-size:200% 100%;animation:skeleton-loading 1.5s infinite}
+.skeleton-body{padding:14px}
+.skeleton-line{height:16px;border-radius:6px;background:linear-gradient(90deg,var(--card) 25%,var(--card-hover) 50%,var(--card) 75%);background-size:200% 100%;animation:skeleton-loading 1.5s infinite;margin-bottom:8px}
+.skeleton-line.short{width:60%}
+.skeleton-line.tiny{width:30%;height:12px}
+@keyframes skeleton-loading{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* Category color mapping for placeholders */
+.cat-grain{--cat-bg:#2d4a2d;--cat-icon:'🌾'}
+.cat-veg{--cat-bg:#1a472a;--cat-icon:'🥬'}
+.cat-fruit{--cat-bg:#4a2c1a;--cat-icon:'🍎'}
+.cat-tea{--cat-bg:#2a3320;--cat-icon:'🍵'}
+.cat-honey{--cat-bg:#4a3a1a;--cat-icon:'🍯'}
+.cat-oil{--cat-bg:#333320;--cat-icon:'🫒'}
+.cat-meat{--cat-bg:#3a2020;--cat-icon:'🥩'}
+.cat-aquatic{--cat-bg:#1a2a3a;--cat-icon:'🐟'}
+.cat-dairy{--cat-bg:#3a3520;--cat-icon:'🥛'}
+.cat-supplement{--cat-bg:#2a2040;--cat-icon:'💊'}
+.cat-other{--cat-bg:#2a3030;--cat-icon:'🌿'}
+.cat-sauce{--cat-bg:#3d2a1a;--cat-icon:'🫙'}
+.cat-noodle{--cat-bg:#4a3520;--cat-icon:'🍜'}
+.cat-mushroom{--cat-bg:#2d3a2a;--cat-icon:'🍄'}
+
+@media(min-width:768px){
+  .modal-overlay.show{align-items:center}
+  .modal{border-radius:20px;max-height:80vh}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+  .action-btns{flex-direction:row}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">🌿</div>
+      <span>生态有机产品库</span>
+    </div>
+    <div class="subtitle">天然 · 健康 · 品质生活</div>
+    <div class="stats">
+      <span>共 <span class="stat-num" id="totalCount">0</span> 款产品</span>
+      <span>当前筛选 <span class="stat-num" id="filteredCount">0</span></span>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索产品名称 / 类目 / 卖点...">
+      <span class="search-clear" id="searchClear" onclick="clearSearch()">✕</span>
+      <span class="search-icon">🔍</span>
+    </div>
+
+    <!-- Toolbar: Sort + Result Count -->
+    <div class="toolbar">
+      <div class="result-count" id="resultCount"></div>
+      <div class="sort-wrap">
+        <span>排序：</span>
+        <button class="sort-btn active" data-sort="default" onclick="setSort('default')">默认</button>
+        <button class="sort-btn" data-sort="name-asc" onclick="setSort('name-asc')">名称↑</button>
+        <button class="sort-btn" data-sort="price-asc" onclick="setSort('price-asc')">价格↑</button>
+        <button class="sort-btn" data-sort="price-desc" onclick="setSort('price-desc')">价格↓</button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs" id="tabs">
+      <div class="tab active" data-cat="全部">全部</div>
+    </div>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="main">
+  <!-- Skeleton Loading -->
+  <div class="grid skeleton-grid" id="skeletonGrid"></div>
+
+  <!-- Product Grid -->
+  <div class="grid" id="grid" style="display:none"></div>
+
+  <!-- Empty State -->
+  <div class="empty" id="empty" style="display:none">
+    <div class="empty-icon">🌱</div>
+    <div class="empty-text">没有找到匹配的产品</div>
+    <div class="empty-hint">试试更换关键词或切换分类</div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" id="pagination"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">产品名称</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-img" id="modalImg"><span style="font-size:64px;opacity:.35">🌿</span></div>
+    <div class="modal-category" style="margin-bottom:12px"><span class="card-category" id="modalCat">类目</span></div>
+    <div class="modal-price" id="modalPrice">¥0</div>
+    <div class="modal-section">
+      <div class="modal-label">✨ 核心卖点</div>
+      <div class="modal-highlights" id="modalHighlights"></div>
+    </div>
+    <div class="action-btns">
+      <a class="action-btn btn-shop" id="btnShop" target="_blank" rel="noopener">🛒 立即购买 / 了解详情</a>
+      <a class="action-btn btn-video" id="btnVideo" target="_blank" rel="noopener" style="display:none">▶️ 观看演示视频</a>
+      <button class="action-btn btn-copy" id="btnCopy" onclick="copyLink()">📋 复制产品链接</button>
+    </div>
+  </div>
+</div>
+
+<!-- Back to top -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- Copy toast -->
+<div class="copy-toast" id="copyToast" style="display:none">链接已复制 ✓</div>
+
+<div class="footer">
+  生态有机产品库 · 持续更新中
+</div>
+
+<script>
+// ========== 配置 ==========
+const PAGE_SIZE = 12;
+let allProducts = [];
+let filteredProducts = [];
+let currentPage = 1;
+let currentCategory = '全部';
+let searchKeyword = '';
+let currentSort = 'default';
+
+// ========== 骨架屏 ==========
+function showSkeleton() {
+  const grid = document.getElementById('skeletonGrid');
+  let html = '';
+  for(let i=0;i<6;i++){
+    html += `<div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line"></div><div class="skeleton-line tiny"></div></div></div>`;
+  }
+  grid.innerHTML = html;
+  grid.style.display = 'grid';
+  document.getElementById('grid').style.display = 'none';
+}
+function hideSkeleton(){
+  document.getElementById('skeletonGrid').style.display = 'none';
+  document.getElementById('grid').style.display = '';
+}
+
+// ========== 加载数据 ==========
+async function loadProducts() {
+  showSkeleton();
+  try {
+    const res = await fetch('data/products.json?t=' + Date.now());
+    allProducts = await res.json();
+    filteredProducts = [...allProducts];
+    hideSkeleton();
+    extractCategories();
+    renderAll();
+  } catch(e) {
+    hideSkeleton();
+    document.getElementById('grid').innerHTML =
+      '<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-text">数据加载失败，请稍后重试</div></div>';
+  }
+}
+
+// ========== 提取类目 + 类目配色 ==========
+const catIcons = {
+  '有机粮油':'grain','粮油':'grain','有机杂粮':'grain','有机调味':'sauce','调味':'sauce',
+  '面食米线':'noodle','面食':'noodle','蛋禽肉奶':'egg','蛋禽':'egg','肉类':'meat',
+  '有机食用油':'oil','食用油':'油','有机饮品':'drink','饮品':'drink','茶饮':'tea',
+  '滋补养生':'supplement','滋补品':'supplement','海产品类':'seafood','水产':'aquatic',
+  '坚果干果':'nut','水果':'fruit','蔬菜':'veg','菌菇干货':'mushroom'
+};
+
+function getCategoryClass(cat){
+  if(cat.includes('调味')||cat.includes('酱')||cat.includes('醋')||cat.includes('酱油')) return 'cat-sauce';
+  if(cat.includes('粮')||cat.includes('米')||(cat.includes('面')&&!cat.includes('条'))) return 'cat-grain';
+  if(cat.includes('蔬')||cat.includes('菜')) return 'cat-veg';
+  if(cat.includes('果')||cat.includes('莓')||cat.includes('橘')||cat.includes('橙')||cat.includes('柚')||cat.includes('坚果')) return 'cat-fruit';
+  if(cat.includes('茶')||cat.includes('饮')||cat.includes('咖啡')||cat.includes('汁')) return 'cat-tea';
+  if(cat.includes('蜜')||cat.includes('蜂')) return 'cat-honey';
+  if(cat.includes('油')) return 'cat-oil';
+  if(cat.includes('肉')||cat.includes('禽')||cat.includes('蛋')) return 'cat-meat';
+  if(cat.includes('鱼')||cat.includes('虾')||cat.includes('蟹')||cat.includes('水')||cat.includes('海')||cat.includes('紫菜')) return 'cat-aquatic';
+  if(cat.includes('奶')||cat.includes('乳')) return 'cat-dairy';
+  if(cat.includes('补')||cat.includes('养')||cat.includes('胶')||cat.includes('膏')||cat.includes('参')||cat.includes('芪')||cat.includes('归')||cat.includes('枣')||cat.includes('莲')) return 'cat-supplement';
+  if(cat.includes('面条')||cat.includes('挂面')||cat.includes('米线')||cat.includes('粉')) return 'cat-noodle';
+  if(cat.includes('菌')||cat.includes('菇')||cat.includes('木耳')) return 'cat-mushroom';
+  return 'cat-other';
+}
+
+function getCatIcon(cat){
+  if(cat.includes('调味')||cat.includes('酱')||cat.includes('醋')||cat.includes('酱油')) return '🫙';
+  if(cat.includes('粮')||cat.includes('米')||(cat.includes('面')&&!cat.includes('条'))) return '🌾';
+  if(cat.includes('蔬')||cat.includes('菜')) return '🥬';
+  if(cat.includes('果')||cat.includes('莓')||cat.includes('橘')||cat.includes('橙')||cat.includes('柚')||cat.includes('坚果')) return '🍎';
+  if(cat.includes('茶')||cat.includes('饮')||cat.includes('咖啡')||cat.includes('汁')) return '🍵';
+  if(cat.includes('蜜')||cat.includes('蜂')) return '🍯';
+  if(cat.includes('油')) return '🫒';
+  if(cat.includes('肉')||cat.includes('禽')||cat.includes('蛋')) return '🥚';
+  if(cat.includes('鱼')||cat.includes('虾')||cat.includes('蟹')||cat.includes('水')||cat.includes('海')||cat.includes('紫菜')) return '🦐';
+  if(cat.includes('奶')||cat.includes('乳')) return '🥛';
+  if(cat.includes('补')||cat.includes('养')||cat.includes('胶')||cat.includes('膏')||cat.includes('参')||cat.includes('芪')||cat.includes('归')||cat.includes('枣')||cat.includes('莲')) return '🌿';
+  if(cat.includes('面条')||cat.includes('挂面')||cat.includes('米线')||cat.includes('粉')) return '🍜';
+  if(cat.includes('菌')||cat.includes('菇')||cat.includes('木耳')) return '🍄';
+  return '🌱';
+}
+
+function extractCategories() {
+  const cats = [...new Set(allProducts.map(p => p.category))];
+  const tabsEl = document.getElementById('tabs');
+  tabsEl.innerHTML = '<div class="tab '+(currentCategory==='全部'?'active':'')+'" data-cat="全部">全部</div>';
+  cats.forEach(cat => {
+    const tab = document.createElement('div');
+    tab.className = 'tab '+(currentCategory===cat?'active':'');
+    tab.dataset.cat = cat;
+    tab.textContent = cat;
+    tabsEl.appendChild(tab);
+  });
+  tabsEl.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      currentCategory = tab.dataset.cat;
+      currentPage = 1;
+      tabsEl.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
+      applyFilter();
+    });
+  });
+}
+
+// ========== 排序 ==========
+function setSort(sortType) {
+  currentSort = sortType;
+  document.querySelectorAll('.sort-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.sort === sortType);
+  });
+  applyFilter();
+}
+
+function sortProducts(list) {
+  const sorted = [...list];
+  switch(currentSort) {
+    case 'name-asc':
+      return sorted.sort((a,b)=>a.name.localeCompare(b.name,'zh'));
+    case 'price-asc':
+      return sorted.sort((a,b)=>{
+        const pa=parsePrice(a.price),pb=parsePrice(b.price);
+        return pa-pb;
+      });
+    case 'price-desc':
+      return sorted.sort((a,b)=>{
+        const pa=parsePrice(a.price),pb=parsePrice(b.price);
+        return pb-pa;
+      });
+    default:
+      return sorted;
+  }
+}
+function parsePrice(str){
+  // 解析价格字符串为数字
+  if(!str) return 0;
+  const m=str.replace(/[^0-9.]/g,'');
+  return parseFloat(m)||0;
+}
+
+// ========== 过滤 ==========
+function applyFilter() {
+  let list = allProducts.filter(p => {
+    const matchCat = currentCategory === '全部' || p.category === currentCategory;
+    if (!matchCat) return false;
+    if (!searchKeyword) return true;
+    const kw = searchKeyword.toLowerCase();
+    return p.name.toLowerCase().includes(kw)
+      || p.category.toLowerCase().includes(kw)
+      || (p.highlights && p.highlights.some(h => h.toLowerCase().includes(kw)));
+  });
+  filteredProducts = sortProducts(list);
+  currentPage = 1;
+  renderAll();
+}
+
+// ========== 渲染 ==========
+function renderAll() { updateStats(); renderGrid(); renderPagination(); }
+
+function updateStats() {
+  document.getElementById('totalCount').textContent = allProducts.length;
+  document.getElementById('filteredCount').textContent = filteredProducts.length;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('empty');
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageItems = filteredProducts.slice(start, start + PAGE_SIZE);
+
+  if (pageItems.length === 0) { grid.innerHTML = ''; empty.style.display = ''; return; }
+  empty.style.display = 'none';
+
+  const icon = (cat) => getCatIcon(cat);
+  const catClass = (cat) => getCategoryClass(cat);
+
+  grid.innerHTML = pageItems.map(p => `
+    <div class="card ${catClass(p.category)}" onclick="openModal(${p.id})">
+      <div class="card-img-wrap">
+        ${p.image ? `<img src="${p.image}" alt="${p.name}" onerror="this.parentElement.innerHTML='<span class=\\'card-img-placeholder\\'>${icon(p.category)}</span>'" loading="lazy">` : `<span class="card-img-placeholder">${icon(p.category)}</span>`}
+        <span class="card-badge">${p.category}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name">${p.name}</div>
+        <div class="card-highlights">
+          ${(p.highlights||[]).slice(0,3).map(h=>`<span class="tag">${h}</span>`).join('')}
+        </div>
+        <div class="card-footer">
+          <span class="card-price">${p.price}</span>
+          <button class="card-btn" onclick="event.stopPropagation();openModal(${p.id})">查看详情</button>
+        </div>
+      </div>
+    </div>`
+  ).join('');
+
+  // 更新结果计数
+  const total = filteredProducts.length;
+  const end = Math.min(start+PAGE_SIZE,total);
+  document.getElementById('resultCount').textContent = `显示第 ${start+1}-${end} 条，共 ${total} 条`;
+}
+
+function renderPagination() {
+  const total = Math.ceil(filteredProducts.length / PAGE_SIZE);
+  if (total <= 1) { document.getElementById('pagination').innerHTML = ''; return; }
+  const pag = document.getElementById('pagination');
+  let html = '';
+  html += `<button class="page-btn" ${currentPage<=1?'disabled style="opacity:.3;pointer-events:none"':''} onclick="goPage(${currentPage-1})">‹</button>`;
+  for(let i=1;i<=total;i++){
+    if(i===1||i===total||Math.abs(i-currentPage)<=1){
+      html += `<button class="page-btn ${i===currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+    } else if(Math.abs(i-currentPage)===2){
+      html += `<span style="color:var(--text-dim)">…</span>`;
+    }
+  }
+  html += `<button class="page-btn" ${currentPage>=total?'disabled style="opacity:.3;pointer-events-none"':''} onclick="goPage(${currentPage+1})">›</button>`;
+  pag.innerHTML = html;
+}
+
+function goPage(p) {
+  const total = Math.ceil(filteredProducts.length / PAGE_SIZE);
+  if(p<1||p>total)return;
+  currentPage=p;
+  renderGrid();
+  renderPagination();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ========== 详情弹窗 ==========
+let currentProductId = null;
+
+function openModal(id) {
+  currentProductId = id;
+  const p = allProducts.find(x=>x.id===id);
+  if(!p)return;
+
+  document.getElementById('modalTitle').textContent = p.name;
+  document.getElementById('modalCat').textContent = p.category;
+
+  const imgWrap = document.getElementById('modalImg');
+  if(p.image){
+    imgWrap.innerHTML = `<img src="${p.image}" alt="${p.name}" onerror="this.parentElement.innerHTML='<span style=\\'font-size:64px;opacity:.35\\'>${getCatIcon(p.category)}</span>'">`;
+  } else {
+    imgWrap.innerHTML = `<span style="font-size:64px;opacity:.35">${getCatIcon(p.category)}</span>`;
+  }
+
+  document.getElementById('modalPrice').textContent = p.price;
+  document.getElementById('modalHighlights').innerHTML =
+    (p.highlights||[]).map(h=>`<span class="modal-tag">${h}</span>`).join('');
+
+  const btnShop = document.getElementById('btnShop');
+  btnShop.href = p.shopUrl || '#';
+
+  const btnVideo = document.getElementById('btnVideo');
+  if(p.videoUrl){ btnVideo.href=p.videoUrl; btnVideo.style.display=''; }
+  else{ btnVideo.style.display='none'; }
+
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modalOverlay').style.display = 'flex';
+}
+
+function closeModal(){
+  document.getElementById('modalOverlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// ========== 复制链接 ==========
+function copyLink(){
+  if(currentProductId==null)return;
+  const url = location.origin+location.pathname+'?product='+currentProductId;
+  navigator.clipboard.writeText(url).then(()=>{
+    const toast = document.getElementById('copyToast');
+    toast.style.display = 'block';
+    setTimeout(()=>{toast.style.display='none';},1500);
+  }).catch(()=>{
+    // fallback
+    const ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();
+    const toast=document.getElementById('copyToast');toast.style.display='block';
+    setTimeout(()=>{toast.style.display='none';},1500);
+  });
+}
+
+// ========== 搜索 ==========
+let searchTimer;
+document.getElementById('searchInput').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  const val = e.target.value.trim();
+  document.getElementById('searchClear').classList.toggle('show', val.length > 0);
+  searchTimer = setTimeout(() => {
+    searchKeyword = val;
+    applyFilter();
+  }, 300);
+});
+
+function clearSearch(){
+  const input = document.getElementById('searchInput');
+  input.value = '';
+  document.getElementById('searchClear').classList.remove('show');
+  searchKeyword = '';
+  applyFilter();
+  input.focus();
+}
+
+// ========== 返回顶部 & 滚动监听 ==========
+const backToTopBtn = document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{
+  backToTopBtn.classList.toggle('show', window.scrollY > 400);
+},{passive:true});
+
+// ========== 初始化 & URL参数支持 ==========
+loadProducts();
+
+// ESC关闭弹窗
+document.addEventListener('keydown', e => { if(e.key==='Escape')closeModal(); });
+
+// 支持通过URL参数打开特定产品
+if(location.search.includes('product=')){
+  const idParam = parseInt(new URLSearchParams(location.search).get('product'));
+  if(idParam && !isNaN(idParam)){
+    // 等数据加载完后打开
+    const origLoad = loadProducts;
+    loadProducts().then(()=>setTimeout(()=>openModal(idParam),500));
+  }
+}
+</script>
+</body>
+</html>
