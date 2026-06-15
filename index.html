@@ -4,18 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>生态有机产品库</title>
-<meta name="description" content="天然·健康·品质生活 — 精选生态有机产品一站式浏览，涵盖粮油、调味、杂粮、食用油、饮品、滋补养生等品类">
-<meta name="keywords" content="生态有机,有机食品,有机粮油,有机调味,有机杂粮,健康食品">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
-<!-- 微信/QQ分享卡片 -->
-<meta property="og:type" content="website">
+<!-- 微信分享卡片优化 -->
 <meta property="og:title" content="生态有机产品库">
-<meta property="og:description" content="天然·健康·品质生活 — 精选40+款生态有机产品，涵盖粮油、调味、杂粮、食用油、饮品、滋补养生等品类">
-<meta property="og:image" content="https://sanshiyoudao.github.io/organic-product-catalog/images/share-thumb.jpg">
-<meta property="og:url" content="https://sanshiyoudao.github.io/organic-product-catalog/">
-<meta itemprop="name" content="生态有机产品库">
-<meta itemprop="description" content="天然·健康·品质生活 — 精选生态有机产品一站式浏览">
-<meta itemprop="image" content="https://sanshiyoudao.github.io/organic-product-catalog/images/share-thumb.jpg">
+<meta property="og:description" content="天然·健康·品质生活 — 精选生态有机产品一站式浏览">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -73,9 +64,10 @@ body{font-family:"Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t
 /* Card */
 .card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .25s;cursor:pointer;position:relative}
 .card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 30px rgba(34,197,94,.15)}
-.card-img-wrap{width:100%;padding-top:133.33%;position:relative;background:linear-gradient(135deg,#1e3320,#2d4a2d);overflow:hidden}
-.card-img-wrap img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;transition:opacity .3s}
-.card-img-placeholder{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:52px;opacity:.35}
+.card-img-wrap{width:100%;height:180px;background:linear-gradient(135deg,#1e3320,#2d4a2d);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.card:hover .card-img-wrap img{transform:scale(1.05)}
+.card-img-placeholder{font-size:52px;opacity:.35}
 .card-badge{position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:bold;background:rgba(34,197,94,.85);color:#fff;backdrop-filter:blur(4px)}
 .card-body{padding:14px}
 .card-name{font-size:16px;font-weight:bold;color:#fff;margin-bottom:6px;line-height:1.3}
@@ -103,8 +95,8 @@ body{font-family:"Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t
 .modal-title{font-size:20px;font-weight:bold;line-height:1.3}
 .modal-close{width:32px;height:32px;border-radius:50%;background:var(--bg);border:none;color:var(--text-dim);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .modal-close:hover{color:#fff;background:var(--border)}
-.modal-img{width:100%;max-height:360px;border-radius:14px;background:linear-gradient(135deg,#1e3320,#2d4a2d);display:flex;align-items:center;justify-content:center;font-size:64px;color:var(--text-dim);overflow:hidden;margin-bottom:16px;position:relative}
-.modal-img img{width:100%;height:auto;max-height:360px;object-fit:contain}
+.modal-img{width:100%;height:220px;border-radius:14px;background:linear-gradient(135deg,#1e3320,#2d4a2d);display:flex;align-items:center;justify-content:center;font-size:64px;color:var(--text-dim);overflow:hidden;margin-bottom:16px}
+.modal-img img{width:100%;height:100%;object-fit:cover}
 .modal-price{font-size:24px;font-weight:bold;color:var(--green);margin-bottom:12px}
 .modal-section{margin-bottom:16px}
 .modal-label{font-size:13px;color:var(--text-dim);margin-bottom:8px;font-weight:bold}
@@ -167,9 +159,7 @@ body{font-family:"Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t
 </style>
 </head>
 <body>
-<script>
-window.PRODUCT_DATA = [{"id":1,"category":"有机粮油","name":"良食本事有机长粒胚芽米","image":"images/1.jpg?v=2","highlights":["1000g袋装","保留胚芽营养更丰富","长粒米口感Q弹"],"price":"¥24.8","shopUrl":"","videoUrl":""},{"id":2,"category":"有机粮油","name":"良食本事有机长粒香米","image":"images/2.jpg?v=2","highlights":["1000g袋装","自然米香浓郁","软糯适口老少皆宜"],"price":"¥24.8","shopUrl":"","videoUrl":""},{"id":3,"category":"有机粮油","name":"良食本事有机五色花米","image":"images/3.jpg?v=2","highlights":["1000g袋装","五种谷物搭配","营养丰富色彩缤纷"],"price":"¥24.8","shopUrl":"","videoUrl":""},{"id":4,"category":"有机调味","name":"淯阳杂粮六珍有机醋","image":"images/4.jpg?v=2","highlights":["485ml瓶装","六种杂粮古法酿造","酸香醇厚不刺喉"],"price":"¥7.5","shopUrl":"","videoUrl":""},{"id":5,"category":"有机调味","name":"淯阳有机酱油","image":"images/5.jpg?v=2","highlights":["485ml瓶装","有机大豆酿造","鲜味纯正0添加"],"price":"¥8.9","shopUrl":"","videoUrl":""},{"id":6,"category":"有机调味","name":"淯阳有机黑豆酱油","image":"images/6.jpg?v=2","highlights":["485ml瓶装","黑豆酿造更营养","氨基酸含量更高"],"price":"¥11.5","shopUrl":"","videoUrl":""},{"id":7,"category":"有机调味","name":"淯阳有机老抽","image":"images/7.jpg?v=2","highlights":["485ml瓶装","上色红亮自然","红烧卤味必备"],"price":"¥9.8","shopUrl":"","videoUrl":""},{"id":8,"category":"有机调味","name":"淯阳有机石磨香油（大）","image":"images/8.jpg?v=2","highlights":["485ml瓶装","石磨研磨工艺","芝麻浓香扑鼻"],"price":"¥35.8","shopUrl":"","videoUrl":""},{"id":9,"category":"有机调味","name":"淯阳有机石磨香油（小）","image":"images/9.jpg?v=2","highlights":["150ml瓶装便携装","石磨研磨工艺","芝麻浓香扑鼻"],"price":"¥12.8","shopUrl":"","videoUrl":""},{"id":10,"category":"有机调味","name":"淯阳有机石磨白芝麻酱","image":"images/10.jpg?v=2","highlights":["200g瓶装","纯白芝麻研磨","口感细腻顺滑"],"price":"¥9.8","shopUrl":"","videoUrl":""},{"id":11,"category":"有机调味","name":"淯阳有机石磨黑芝麻酱","image":"images/11.jpg?v=2","highlights":["200g瓶装","纯黑芝麻研磨","补钙黑发营养佳"],"price":"¥12.9","shopUrl":"","videoUrl":""},{"id":12,"category":"有机调味","name":"淯阳有机石磨花生酱","image":"images/12.jpg?v=2","highlights":["200g瓶装","原粒花生研磨","无糖配方健康选择"],"price":"¥7.8","shopUrl":"","videoUrl":""},{"id":13,"category":"面食米线","name":"康路有机面粉","image":"images/13.jpg?v=2","highlights":["2.5kg袋装","中筋面粉适合多种面点","无添加纯净原料"],"price":"¥35.8","shopUrl":"","videoUrl":""},{"id":14,"category":"面食米线","name":"康路有机挂面","image":"images/14.jpg?v=2","highlights":["280g×2袋装","细挂面爽滑劲道","有机小麦制成"],"price":"¥7.9","shopUrl":"","videoUrl":""},{"id":15,"category":"面食米线","name":"有机山药挂面","image":"images/15.jpg?v=2","highlights":["200g盒装","山药添加营养丰富","易消化老少皆宜"],"price":"¥25.8","shopUrl":"","videoUrl":""},{"id":16,"category":"蛋禽肉奶","name":"郝树根呼吸蛋","image":"images/16.jpg?v=2","highlights":["10枚/盒","散养土鸡蛋","蛋黄饱满色泽金黄"],"price":"¥32","shopUrl":"","videoUrl":""},{"id":17,"category":"有机杂粮","name":"香畴萌芽胚芽米","image":"images/17.jpg?v=2","highlights":["500g袋装","活米技术保留胚芽生命力","营养是普通米的3倍"],"price":"¥35","shopUrl":"","videoUrl":""},{"id":18,"category":"有机杂粮","name":"香畴压塌楼小米","image":"images/18.jpg?v=2","highlights":["1000g袋装","传统压塌工艺","黄金小米粥油厚"],"price":"¥52.8","shopUrl":"","videoUrl":""},{"id":19,"category":"有机杂粮","name":"香畴麦芽糖","image":"","highlights":["500g袋装","传统古法熬制","纯天然零添加"],"price":"¥35","shopUrl":"","videoUrl":""},{"id":20,"category":"有机食用油","name":"塞冉有机核桃油","image":"images/20.jpg?v=2","highlights":["500ml瓶装","冷榨头道油","富含Omega-3健脑益智"],"price":"¥49.8","shopUrl":"","videoUrl":""},{"id":21,"category":"有机食用油","name":"塞冉有机山茶油","image":"images/21.jpg?v=2","highlights":["500ml瓶装","物理压榨山茶籽油","烟点高适合中式烹饪"],"price":"¥79","shopUrl":"","videoUrl":""},{"id":22,"category":"有机食用油","name":"塞冉有机亚麻籽油","image":"images/22.jpg?v=2","highlights":["500ml瓶装","冷榨亚麻籽油","α-亚麻酸含量丰富"],"price":"¥39.8","shopUrl":"","videoUrl":""},{"id":23,"category":"有机饮品","name":"云嶺鲜生玉米汁","image":"images/23.jpg?v=2","highlights":["230ml瓶装","非浓缩还原鲜玉米汁","NFC鲜榨工艺"],"price":"¥6.5","shopUrl":"","videoUrl":""},{"id":24,"category":"有机饮品","name":"云嶺鲜生胡萝卜汁","image":"images/24.jpg?v=2","highlights":["230ml瓶装","NFC非浓缩还原胡萝卜素丰富","新鲜果蔬直供"],"price":"¥7.5","shopUrl":"","videoUrl":""},{"id":25,"category":"滋补养生","name":"有机黑芝麻糊","image":"images/25.jpg?v=2","highlights":["680g袋装","现磨黑芝麻香味浓郁","即冲即饮方便营养"],"price":"¥78","shopUrl":"","videoUrl":""},{"id":26,"category":"滋补养生","name":"有机薏仁红豆粉","image":"images/26.jpg?v=2","highlights":["680g袋装","祛湿健脾经典配方","代餐早餐两相宜"],"price":"¥78","shopUrl":"","videoUrl":""},{"id":27,"category":"海产品类","name":"有机紫菜","image":"images/27.jpg?v=2","highlights":["60g袋装","深海无污染海域生长","免洗即食干货"],"price":"¥21.5","shopUrl":"","videoUrl":""},{"id":28,"category":"坚果干果","name":"有机核桃仁","image":"","highlights":["240g袋装","原果去壳完整果仁","补脑益智每日坚果"],"price":"¥88","shopUrl":"","videoUrl":""},{"id":29,"category":"滋补养生","name":"有机红枣","image":"images/29.jpg?v=2","highlights":["500g袋装","新疆灰枣个大肉厚","泡茶煮粥补血养颜"],"price":"¥48.8","shopUrl":"","videoUrl":""},{"id":30,"category":"滋补养生","name":"有机黄芪","image":"images/30.jpg?v=2","highlights":["200g瓶装","甘肃产地道药材","补气固表增强免疫"],"price":"¥78","shopUrl":"","videoUrl":""},{"id":31,"category":"滋补养生","name":"有机当归","image":"","highlights":["200g瓶装","甘肃岷县道地当归","补血调经女性之友"],"price":"¥78","shopUrl":"","videoUrl":""},{"id":32,"category":"滋补养生","name":"有机党参","image":"","highlights":["200g瓶装","甘肃道地党参","健脾益肺气血双补"],"price":"¥78","shopUrl":"","videoUrl":""},{"id":33,"category":"滋补养生","name":"有机莲子","image":"","highlights":["240g瓶装","湖南湘莲无心白莲","清心安神煲汤甜品"],"price":"¥55","shopUrl":"","videoUrl":""},{"id":34,"category":"菌菇干货","name":"有机木耳","image":"images/34.jpg?v=2","highlights":["150g袋装","东北黑木耳肉质厚实","凉拌热炒火锅百搭"],"price":"¥38","shopUrl":"","videoUrl":""},{"id":35,"category":"有机杂粮","name":"有机小米","image":"","highlights":["280g袋装","黄小米熬粥黏稠香甜","五谷杂粮健康主食"],"price":"¥17.8","shopUrl":"","videoUrl":""},{"id":36,"category":"有机杂粮","name":"有机绿豆","image":"images/36.jpg?v=2","highlights":["280g袋装","去皮绿豆易煮起沙","夏季解暑绿豆汤必备"],"price":"¥17.8","shopUrl":"","videoUrl":""},{"id":37,"category":"有机杂粮","name":"有机黑豆","image":"","highlights":["280g袋装","绿心黑豆补肾乌发","打豆浆首选"],"price":"¥16.5","shopUrl":"","videoUrl":""},{"id":38,"category":"有机杂粮","name":"有机玉米碴","image":"images/38.jpg?v=2","highlights":["280g袋装","细玉米碴煮粥软糯","粗粮早餐营养均衡"],"price":"¥8.8","shopUrl":"","videoUrl":""},{"id":39,"category":"有机杂粮","name":"有机燕麦","image":"","highlights":["280g袋装","全粒燕麦片高纤维","代餐饱腹低GI主食"],"price":"¥13.8","shopUrl":"","videoUrl":""},{"id":40,"category":"有机粮油","name":"有机五常大米","image":"images/40.jpg?v=2","highlights":["2500g袋装","东北五常稻花香2号","颗粒饱满回甘悠长"],"price":"¥118","shopUrl":"","videoUrl":""}];
-</script>
+<script src="data/products.js"></script>
 
 <!-- Header -->
 <div class="header">
@@ -270,6 +260,12 @@ let currentPage = 1;
 let currentCategory = '全部';
 let searchKeyword = '';
 let currentSort = 'default';
+
+// ========== 图片URL处理 ==========
+function getImageUrl(p) {
+  if (p.image && p.image.length > 5) return p.image;
+  return `images/${p.id}.jpg`;
+}
 
 // ========== 骨架屏 ==========
 function showSkeleton() {
@@ -448,7 +444,8 @@ function renderGrid() {
   grid.innerHTML = pageItems.map(p => `
     <div class="card ${catClass(p.category)}" onclick="openModal(${p.id})">
       <div class="card-img-wrap">
-        ${p.image ? `<img src="${p.image}" alt="${p.name}" onerror="this.parentElement.innerHTML='<span class=\\'card-img-placeholder\\'>${icon(p.category)}</span>'" loading="lazy">` : `<span class="card-img-placeholder">${icon(p.category)}</span>`}
+        <img src="${getImageUrl(p)}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy">
+        <span class="card-img-placeholder" style="display:none">${icon(p.category)}</span>
         <span class="card-badge">${p.category}</span>
       </div>
       <div class="card-body">
@@ -508,11 +505,8 @@ function openModal(id) {
   document.getElementById('modalCat').textContent = p.category;
 
   const imgWrap = document.getElementById('modalImg');
-  if(p.image){
-    imgWrap.innerHTML = `<img src="${p.image}" alt="${p.name}" onerror="this.parentElement.innerHTML='<span style=\\'font-size:64px;opacity:.35\\'>${getCatIcon(p.category)}</span>'">`;
-  } else {
-    imgWrap.innerHTML = `<span style="font-size:64px;opacity:.35">${getCatIcon(p.category)}</span>`;
-  }
+  const imgUrl = getImageUrl(p);
+  imgWrap.innerHTML = `<img src="${imgUrl}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="width:100%;height:100%;object-fit:cover"><span style="font-size:64px;opacity:.35;display:none">${getCatIcon(p.category)}</span>`;
 
   document.getElementById('modalPrice').textContent = p.price;
   document.getElementById('modalHighlights').innerHTML =
