@@ -15,7 +15,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 2,
-    "category": "有机粮油",
+    "category": "米面粮油",
     "name": "良食本事有机长粒香米",
     "image": "",
     "highlights": [
@@ -29,7 +29,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 3,
-    "category": "有机粮油",
+    "category": "米面粮油",
     "name": "良食本事有机五色花米",
     "image": "",
     "highlights": [
@@ -43,7 +43,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 4,
-    "category": "有机调味",
+    "category": "调味酱料",
     "name": "淯阳杂粮六珍有机醋",
     "image": "",
     "highlights": [
@@ -57,7 +57,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 5,
-    "category": "有机调味",
+    "category": "调味酱料",
     "name": "淯阳有机酱油",
     "image": "",
     "highlights": [
@@ -71,7 +71,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 6,
-    "category": "有机调味",
+    "category": "调味酱料",
     "name": "淯阳有机黑豆酱油",
     "image": "",
     "highlights": [
@@ -85,7 +85,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 7,
-    "category": "有机调味",
+    "category": "调味酱料",
     "name": "淯阳有机老抽",
     "image": "",
     "highlights": [
@@ -99,7 +99,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 8,
-    "category": "有机调味",
+    "category": "调味酱料",
     "name": "淯阳有机石磨香油（大）",
     "image": "",
     "highlights": [
@@ -113,7 +113,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 9,
-    "category": "有机调味",
+    "category": "调味酱料",
     "name": "淯阳有机石磨香油（小）",
     "image": "",
     "highlights": [
@@ -127,7 +127,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 10,
-    "category": "有机调味",
+    "category": "调味酱料",
     "name": "淯阳有机石磨白芝麻酱",
     "image": "",
     "highlights": [
@@ -141,7 +141,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 11,
-    "category": "有机调味",
+    "category": "调味酱料",
     "name": "淯阳有机石磨黑芝麻酱",
     "image": "",
     "highlights": [
@@ -155,7 +155,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 12,
-    "category": "有机调味",
+    "category": "调味酱料",
     "name": "淯阳有机石磨花生酱",
     "image": "",
     "highlights": [
@@ -169,7 +169,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 13,
-    "category": "面食米线",
+    "category": "米面粮油",
     "name": "康路有机面粉",
     "image": "",
     "highlights": [
@@ -183,7 +183,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 14,
-    "category": "面食米线",
+    "category": "米面粮油",
     "name": "康路有机挂面",
     "image": "",
     "highlights": [
@@ -211,8 +211,8 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 16,
-    "category": "有机粮油",
-    "name": "香畴萌芽芽胚芽米",
+    "category": "米面粮油",
+    "name": "香畴有机萌芽芽胚芽米",
     "image": "",
     "highlights": [
       "500g袋装",
@@ -225,8 +225,8 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 17,
-    "category": "有机杂粮",
-    "name": "香畴压塌楼小米",
+    "category": "米面粮油",
+    "name": "香畴有机压塌楼小米",
     "image": "",
     "highlights": [
       "1000g袋装",
@@ -239,8 +239,8 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 18,
-    "category": "有机杂粮",
-    "name": "香畴麦芽糖",
+    "category": "调味酱料",
+    "name": "香畴有机麦芽糖",
     "image": "",
     "highlights": [
       "500g袋装",
@@ -253,7 +253,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 19,
-    "category": "有机食用油",
+    "category": "米面粮油",
     "name": "塞冉有机核桃油",
     "image": "",
     "highlights": [
@@ -267,7 +267,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 20,
-    "category": "有机食用油",
+    "category": "米面粮油",
     "name": "塞冉有机山茶油",
     "image": "",
     "highlights": [
@@ -281,7 +281,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 21,
-    "category": "有机食用油",
+    "category": "米面粮油",
     "name": "塞冉有机亚麻籽油",
     "image": "",
     "highlights": [
@@ -295,8 +295,8 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 22,
-    "category": "有机饮品",
-    "name": "云嶺鲜生玉米汁",
+    "category": "酒水饮料",
+    "name": "云嶺鲜生有机玉米汁",
     "image": "",
     "highlights": [
       "230ml瓶装",
@@ -309,8 +309,8 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 23,
-    "category": "有机饮品",
-    "name": "云嶺鲜生胡萝卜汁",
+    "category": "酒水饮料",
+    "name": "云嶺鲜生有机胡萝卜汁",
     "image": "",
     "highlights": [
       "230ml瓶装",
@@ -323,7 +323,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 24,
-    "category": "面食米线",
+    "category": "米面粮油",
     "name": "有机山药挂面",
     "image": "",
     "highlights": [
@@ -365,7 +365,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 27,
-    "category": "海产品类",
+    "category": "水产海鲜",
     "name": "有机紫菜",
     "image": "",
     "highlights": [
@@ -379,7 +379,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 28,
-    "category": "坚果干果",
+    "category": "坚果炒货",
     "name": "有机核桃仁",
     "image": "",
     "highlights": [
@@ -477,7 +477,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 35,
-    "category": "有机杂粮",
+    "category": "米机粮油",
     "name": "有机小米",
     "image": "",
     "highlights": [
@@ -491,7 +491,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 36,
-    "category": "有机杂粮",
+    "category": "米面粮油",
     "name": "有机绿豆",
     "image": "",
     "highlights": [
@@ -505,7 +505,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 37,
-    "category": "有机杂粮",
+    "category": "米面粮油",
     "name": "有机黑豆",
     "image": "",
     "highlights": [
@@ -519,7 +519,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 38,
-    "category": "有机杂粮",
+    "category": "米面粮油",
     "name": "有机玉米碴",
     "image": "",
     "highlights": [
@@ -533,7 +533,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 39,
-    "category": "有机杂粮",
+    "category": "米面粮油",
     "name": "有机燕麦",
     "image": "",
     "highlights": [
@@ -547,7 +547,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 40,
-    "category": "有机粮油",
+    "category": "米面粮油",
     "name": "有机五常大米",
     "image": "",
     "highlights": [
