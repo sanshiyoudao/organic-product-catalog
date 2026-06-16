@@ -930,7 +930,7 @@ async function doPublish() {
   try {
     // Step 1: Get current file SHA
     addStep('获取文件信息...', 'active');
-    const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+    const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=gh-pages`, {
       headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
     });
     if (!getRes.ok) {
@@ -961,7 +961,8 @@ async function doPublish() {
       body: JSON.stringify({
         message: `更新产品数据 - ${new Date().toLocaleString('zh-CN')}`,
         content: encodedContent,
-        sha: sha
+        sha: sha,
+        branch: 'gh-pages'
       })
     });
     if (!putRes.ok) {
