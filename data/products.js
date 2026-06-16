@@ -477,7 +477,7 @@ window.PRODUCT_DATA = [
   },
   {
     "id": 35,
-    "category": "米机粮油",
+    "category": "米面粮油",
     "name": "有机小米",
     "image": "",
     "highlights": [
